@@ -1,0 +1,24 @@
+#!/bin/bash
+file=$1
+x=5
+y=6
+col1=($(awk '{ print $1 }' "$1" | sort -n)) 
+col2=($(awk '{ print $2 }' "$1" | sort -n)) 
+for i in "${!col1[@]}"; do
+     difference=$((col1[i] - col2[i])) 
+#echo $difference
+     if [ $difference -lt 0 ]; then
+
+	     abs=$((difference * -1))
+	     echo $abs
+     else
+	 abs=$difference
+	 echo $abs
+     fi
+#     echo $difference
+     Distance=$((Distance + abs))
+      done
+#echo ${col1[@]}
+#echo $Distance
+
+echo $Distance

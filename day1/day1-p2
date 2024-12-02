@@ -1,0 +1,12 @@
+#!/bin/bash
+file=$1
+x=5
+y=6
+col1=($(awk '{ print $1 }' "$1" | sort -n)) 
+col2=($(awk '{ print $2 }' "$1" | sort -n)) 
+for i in "${!col1[@]}"; do
+count=$(awk '{ print $2 }' $file | grep -o ${col1[i]} | wc -l)
+product=$((count * col1[i]))
+similarity=$((similarity + product))
+done 
+echo $similarity
